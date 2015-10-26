@@ -120,19 +120,14 @@ public class Model extends Observable implements Observer {
 	}
 
 	public void moveTo(char direction) {
-		Rectangle2D tmp = block.getBlock();
-		if (direction == ' ' && block.isOnGround()) {
-			block.getBlock().setFrame(tmp.getX(), tmp.getY() - 20,
-					tmp.getWidth(), tmp.getHeight());
-			block.start();
+		if (direction == ' ') {
+			block.jump();
 		}
 		if (direction == 'd') {
-			block.getBlock().setFrame(tmp.getX()+tmp.getWidth(), tmp.getY(),
-					tmp.getWidth(), tmp.getHeight());
+			block.moveRight();
 		}
 		if (direction == 'a') {
-			block.getBlock().setFrame(tmp.getX() - tmp.getWidth(), tmp.getY(),
-					tmp.getWidth(), tmp.getHeight());
+			block.moveLeft();
 		}
 		setChanged();
 		notifyObservers();
